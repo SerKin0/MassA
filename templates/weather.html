@@ -37,26 +37,30 @@
         }
 
         button {
-            
             font-family: "Montserrat";
-            /* width: 15%; Задаем ширину кнопки */
             padding: 10px;
             background-color: #4f57c9;
             color: #ffffff;
             border: none;
             border-radius: 50%;
             cursor: pointer;
-            padding: 10px;
             font-size: 20px;
-            margin-left: 5px; /* Отступ от поля ввода */
+            margin-left: 5px;
         }
 
         button:hover {
             background-color: #66FCF1;
         }
+
         .input-container {
             display: flex;
-            align-items: center; /* Выравниваем по вертикали */
+            align-items: center;
+        }
+
+        .weather-info {
+            margin-top: 20px;
+            color: #ffffff;
+            text-align: center;
         }
     </style>
     <title>Погода</title>
@@ -64,11 +68,42 @@
 <body>
     <div class="container">
         <h1>Погода</h1>
-        <div class="input-container">
-            <input type="text" placeholder="Введите название города" required>
-            <button type="button">🔍</button>
+        <form id="weather-form">
+            <div class="input-container">
+                <input type="text" id="city" name="city" placeholder="Введите название города" required>
+                <button type="submit">🔍</button>
+            </div>
+        </form>
+        <div class="weather-info" id="weather-info">
+            <!-- Информация о погоде будет отображаться здесь -->
         </div>
     </div>
+    <script>
+        document.getElementById('weather-form').addEventListener('submit', async function(event) {
+            event.preventDefault();
+
+            const city = document.getElementById('city').value;
+            const response = await fetch('/weather', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ city })
+            });
+
+            const data = await response.json();
+            const weatherInfo = document.getElementById('weather-info');
+
+            if (data.error) {
+                weatherInfo.innerHTML = `<p>${data.error}</p>`;
+            } else {
+                weatherInfo.innerHTML = `
+                    <p>Температура: ${data.temp}°C</p>
+                    <p>Ощущается как: ${data.feels_like}°C</p>
+                    <p>Описание: ${data.description}</p>
+                `;
+            }
+        });
+    </script>
 </body>
 </html>
-

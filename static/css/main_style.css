@@ -1,0 +1,57 @@
+body {
+    font-family: "Montserrat";
+    background-color: #A3D5FF;
+    padding: 30px;
+}
+
+.container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background: #6F73D2;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+input {
+    font-family: "Montserrat";
+    width: 95%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #A3D5FF;
+    border-radius: 10px;
+}
+
+button {
+    font-family: "Montserrat";
+    padding: 10px;
+    background-color: #4f57c9;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 20px;
+    margin-left: 5px;
+}
+
+button:hover {
+    background-color: #66FCF1;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+.weather-info {
+    margin-top: 20px;
+    color: #ffffff;
+    text-align: center;
+}
