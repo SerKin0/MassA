@@ -3,7 +3,7 @@ from fastapi.responses import JSONResponse
 import requests
 from pydantic import TypeAdapter
 
-from src.settings import API_WEATHER, BASE_URL
+from settings import API_WEATHER, BASE_URL
 from src.models import WeatherData
 
 router = APIRouter()
