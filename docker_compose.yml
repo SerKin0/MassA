@@ -1,0 +1,14 @@
+version: "3.8"                                            # Версия docker-compose
+services:
+  backend:                                                # Имя сервиса - BACKEND
+    build: .                                           # - Строить образ Docker из текущей директории
+    env_file:                                             # Указание файла для подстановки переменных окружения
+      - src/.env
+    ports:                                                # Определение портов для перенаправления
+      - "8000:8000"  # - Перенаправление CONTAINER_PORT на HOST_PORT, значения из .env
+    command:                                              # Команда для запуска сервиса
+      [
+        "uvicorn", "main:app", "--reload",
+        "--host", "0.0.0.0", "--port", "8000",
+        "--log-level", "debug"
+      ]

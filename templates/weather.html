@@ -95,12 +95,13 @@
             const weatherInfo = document.getElementById('weather-info');
 
             if (data.error) {
-                weatherInfo.innerHTML = `<p>${data.error}</p>`;
+                weatherInfo.innerHTML = `<p>123${data.error}</p>`;
             } else {
                 weatherInfo.innerHTML = `
                     <p>Температура: ${data.temp}°C</p>
                     <p>Ощущается как: ${data.feels_like}°C</p>
-                    <p>Описание: ${data.description}</p>
+                    <p>Небо: ${data.description}</p>
+                    <p>Скорость ветра: ${data.speed_wind} м/с</p>
                 `;
             }
         });
