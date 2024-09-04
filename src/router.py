@@ -11,7 +11,7 @@ router = APIRouter()
 
 @router.post('/weather')
 async def get_weather(request: Request):
-    # Принимаем json с данными формы
+    # Извлекаем json с данными из формы
     data = await request.json()
     # Записываем название города в переменную (если нет, то вводит None)
     city = data.get("city")
@@ -26,16 +26,17 @@ async def get_weather(request: Request):
 
         print(f"{data=}")
 
-        if data["cod"] != "404":
-            weather_data = TypeAdapter(WeatherData).validate_python(data)
-            return {
-                "temp": weather_data.list[0].main.temp,
-                "feels_like": weather_data.list[0].main.feels_like,
-                "description": weather_data.list[0].weather[0].description,
-                "speed_wind": weather_data.list[0].wind.speed
-            }
-        else:
+        if data["cod"] != "200":
             return {"error": "Город не найден"}
+
+        weather_data = TypeAdapter(WeatherData).validate_python(data)
+        return {
+            "temp": weather_data.list[0].main.temp,
+            "feels_like": weather_data.list[0].main.feels_like,
+            "description": weather_data.list[0].weather[0].description,
+            "speed_wind": weather_data.list[0].wind.speed
+        }
+
     except requests.RequestException as e:
         print(e)
         return {"error": str(e)}

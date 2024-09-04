@@ -9,4 +9,4 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 # Запуск приложения со Starlette с помощью uvicorn
 CMD ["python", "src/main.py"]
-EXPOSE 9800
+EXPOSE 8000

@@ -1,10 +1,10 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Optional
 
 
 class Coord(BaseModel):
-    lat: float
-    lon: float
+    lat: float = Field(description="Широта")
+    lon: float = Field(description="Долгота")
 
 
 class Main(BaseModel):
